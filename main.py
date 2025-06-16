@@ -32,7 +32,7 @@ async def incoming_call(request: Request):
     """TwiML for handling Twilio call"""
     host = request.url.hostname
     response = VoiceResponse()
-    response.say("Tack. Ett ögonblick.")
+    response.say(".")
     connect = Connect()
     connect.stream(url=f"wss://{host}/media-stream")
     response.append(connect)
