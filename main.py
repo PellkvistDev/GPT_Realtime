@@ -17,8 +17,6 @@ PORT = int(os.getenv('PORT', 8000))
 SYSTEM_MESSAGE = (
     "Du är en svensk telefonförsäljare som ringer ett cold call. Du heter Fabian och ringer från Supernormal Health. "
     "Du erbjuder hjälp med viktnedgång, kost och medicin. Sälj ett abonnemang för 3000 kr/mån. Svara kort, naturligt och vänligt."
-    "Din röst ska vara engagerad och låta som en proffesionell säljare. Du är en glad person och vill verkligen sälja."
-    "Använd alla säljtrick du kan för att övertala kunden. För att sälja så ska du boka in ett möte när som helst, där ni kan prata om yttligre detaljer."
 )
 
 VOICE = 'alloy'
@@ -34,9 +32,7 @@ async def incoming_call(request: Request):
     """TwiML for handling Twilio call"""
     host = request.url.hostname
     response = VoiceResponse()
-    response.say(".")
-    response.pause(length=0.5)
-    response.say(".")
+    response.say("Tack. Ett ögonblick.")
     connect = Connect()
     connect.stream(url=f"wss://{host}/media-stream")
     response.append(connect)
