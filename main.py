@@ -131,7 +131,7 @@ async def setup_openai_session(ws):
         "item": {
             "type": "message",
             "role": "user",
-            "content": [{"type": "input_text", "text": "Tjena, har du en minut?"}]
+            "content": [{"type": "input_text", "text": "Hälsa på personen med 'Tjena, har du en minut?'"}]
         }
     }
     await ws.send(json.dumps(greeting))
