@@ -34,7 +34,7 @@ async def incoming_call(request: Request):
     """TwiML for handling Twilio call"""
     host = request.url.hostname
     response = VoiceResponse()
-    response.say("Tack. Ett ögonblick.")
+    response.pause(length=0.3)
     connect = Connect()
     connect.stream(url=f"wss://{host}/media-stream")
     response.append(connect)
@@ -45,14 +45,12 @@ async def media_stream(websocket: WebSocket):
     print("Twilio client connected")
     await websocket.accept()
 
-    extra_headers = [
-        ("Authorization", f"Bearer {OPENAI_API_KEY}"),
-        ("OpenAI-Beta", "realtime=v1"),
-    ]
-
     async with websockets.connect(
         'wss://api.openai.com/v1/realtime?model=gpt-4o-mini-realtime-preview-2024-12-17',
-         extra_headers=extra_headers
+        extra_headers={
+            "Authorization": f"Bearer {OPENAI_API_KEY}",
+            "OpenAI-Beta": "realtime=v1"
+        }
     ) as openai_ws:
         await setup_openai_session(openai_ws)
 
