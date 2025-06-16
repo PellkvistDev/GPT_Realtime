@@ -27,7 +27,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return FileResponse(os.path.join("static", "index.html"))
+    return FileResponse("index.html")
 
 @app.api_route("/incoming-call", methods=["GET", "POST"])
 async def incoming_call(request: Request):
