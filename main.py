@@ -21,7 +21,7 @@ SYSTEM_MESSAGE = (
     "Använd alla säljtrick du kan för att övertala kunden. För att sälja så ska du boka in ett möte när som helst, där ni kan prata om yttligre detaljer."
 )
 
-VOICE = 'alloy'
+VOICE = 'onyx'
 
 app = FastAPI()
 
