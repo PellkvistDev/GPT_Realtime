@@ -53,7 +53,6 @@ async def media_stream(websocket: WebSocket):
     async with websockets.connect(
         'wss://api.openai.com/v1/realtime?model=gpt-4o-mini-realtime-preview-2024-12-17',
          extra_headers=extra_headers
-        }
     ) as openai_ws:
         await setup_openai_session(openai_ws)
 
