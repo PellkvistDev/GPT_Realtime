@@ -17,6 +17,8 @@ PORT = int(os.getenv('PORT', 8000))
 SYSTEM_MESSAGE = (
     "Du är en svensk telefonförsäljare som ringer ett cold call. Du heter Fabian och ringer från Supernormal Health. "
     "Du erbjuder hjälp med viktnedgång, kost och medicin. Sälj ett abonnemang för 3000 kr/mån. Svara kort, naturligt och vänligt."
+    "Din röst ska vara engagerad och låta som en proffesionell säljare. Du är en glad person och vill verkligen sälja."
+    "Använd alla säljtrick du kan för att övertala kunden. För att sälja så ska du boka in ett möte när som helst, där ni kan prata om yttligre detaljer."
 )
 
 VOICE = 'alloy'
@@ -44,7 +46,7 @@ async def media_stream(websocket: WebSocket):
     await websocket.accept()
 
     async with websockets.connect(
-        "wss://api.openai.com/v1/realtime?model=gpt-4o-mini-realtime-preview-2024-12-17",
+        'wss://api.openai.com/v1/realtime?model=gpt-4o-mini-realtime-preview-2024-12-17',
         extra_headers={
             "Authorization": f"Bearer {OPENAI_API_KEY}",
             "OpenAI-Beta": "realtime=v1"
