@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Automated Cold Calls | YourCompanyName</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      color: #222;
+    }
+
+    header {
+      background-color: #0a192f;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      font-size: 1.8rem;
+    }
+
+    nav {
+      background-color: #112240;
+      padding: 0.8rem 2rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1.2rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #64ffda;
+    }
+
+    .hero {
+      position: relative;
+      height: 75vh;
+      background: url('https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=1532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(10, 25, 47, 0.7);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .hero-content p {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    /* subtle abstract shape in background using SVG as data URI */
+    main::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -150px;
+      width: 400px;
+      height: 400px;
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='200' cy='200' r='200' fill='%2364FFDA' fill-opacity='0.1'/%3E%3C/svg%3E") no-repeat;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(40px);
+    }
+
+    /* Section Dividers */
+    section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #e1e1e1;
+      position: relative;
+      z-index: 1;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .features,
+    .pricing,
+    .about {
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .feature,
+    .pricing-plan,
+    .about-section {
+      background: white;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      flex: 1 1 280px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature:hover,
+    .pricing-plan:hover,
+    .about-section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature h3,
+    .pricing-plan h3,
+    .about-section h3 {
+      margin-bottom: 1rem;
+      color: #0a192f;
+      font-weight: 700;
+    }
+
+    .feature p,
+    .pricing-plan p,
+    .about-section p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-top: 0.4rem;
+    }
+
+    /* Pricing specific styling */
+    .pricing-plan {
+      border: 2px solid transparent;
+      cursor: default;
+    }
+
+    .pricing-plan.featured {
+      border-color: #64ffda;
+      box-shadow: 0 12px 30px rgba(100, 255, 218, 0.4);
+    }
+
+    .pricing-plan .price {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #0a192f;
+    }
+
+    #contact {
+      background: white;
+      padding: 2rem;
+      max-width: 420px;
+      margin: 0 auto 3rem auto;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    #contact h2 {
+      margin-bottom: 1rem;
+      color: #0a192f;
+    }
+
+    #contact p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    #contact label {
+      font-weight: 600;
+      text-align: left;
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+
+    #contact input:focus,
+    #contact textarea:focus {
+      border-color: #64ffda;
+      outline: none;
+    }
+
+    /* Professional Send Button style */
+    #contact button {
+      background-color: #112240;
+      color: #e0e0e0;
+      padding: 0.85rem 1.8rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    }
+
+    #contact button:hover,
+    #contact button:focus {
+      background-color: #1b2a50;
+      color: #fff;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      outline: none;
+    }
+
+    footer {
+      background-color: #0a192f;
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .features,
+      .pricing,
+      .about {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  AI Automated Cold Calls | YourCompanyName
+</header>
+
+<nav>
+  <a href="#features">Features</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Make Sales Calls Effortlessly with AI</h1>
+    <p>Our advanced AI system automates your cold calls, increasing lead conversion while saving you hours.</p>
+  </div>
+</section>
+
+<main>
+  <section id="features">
+    <h2 style="text-align:center; margin-bottom: 2rem;">Features</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>AI-Powered Conversations</h3>
+        <p>Our AI adapts in real-time, creating natural, engaging dialogues that resonate with prospects.</p>
+      </div>
+      <div class="feature">
+        <h3>Customizable Scripts</h3>
+        <p>Easily customize call scripts tailored to your business needs and goals.</p>
+      </div>
+      <div class="feature">
+        <h3>Lead Analytics</h3>
+        <p>Track performance with detailed analytics and insights to optimize your sales process.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2 style="text-align:center; margin-bottom: 2rem;">Pricing</h2>
+    <div class="pricing">
+      <div class="pricing-plan">
+        <h3>Starter</h3>
+        <p class="price">$49 / month</p>
+        <p>Up to 500 calls/month</p>
+        <p>Basic AI scripting</p>
+      </div>
+      <div class="pricing-plan featured">
+        <h3>Professional</h3>
+        <p class="price">$149 / month</p>
+        <p>Up to 2,000 calls/month</p>
+        <p>Advanced AI customization</p>
+      </div>
+      <div class="pricing-plan">
+        <h3>Enterprise</h3>
+        <p class="price">Contact Us</p>
+        <p>Unlimited calls</p>
+        <p>Dedicated support & SLA</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 style="text-align:center; margin-bottom: 2rem;">About Us</h2>
+    <div class="about">
+      <div class="about-section">
+        <h3>Our Mission</h3>
+        <p>To revolutionize sales calls with AI that empowers businesses to grow smarter and faster.</p>
+      </div>
+      <div class="about-section">
+        <h3>Our Team</h3>
+        <p>Experienced AI researchers and sales professionals dedicated to delivering excellence.</p>
+      </div>
+      <div class="about-section">
+        <h3>Contact Info</h3>
+        <p>Email: info@yourcompany.com<br />Phone: +1 (555) 123-4567</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or want a demo? Drop us a message below!</p>
+    <form id="contact-form" onsubmit="handleContactSubmit(event)">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Write your message here" required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 YourCompanyName. All rights reserved.
+</footer>
+
+<script>
+  // Optional: Simple Contact form handler (dummy)
+  function handleContactSubmit(event) {
+    event.preventDefault();
+    alert('Thank you for contacting us! We will get back to you soon.');
+    event.target.reset();
+  }
+</script>
+
+</body>
+</html>
