@@ -91,7 +91,7 @@ async def media_stream(websocket: WebSocket):
                         await websocket.send_json({
                             "event": "media",
                             "streamSid": stream_sid,
-                            "media": {"payload": payload}
+                            "media": {"payload": data['delta']}
                         })
 
                         if response_start_time is None:
